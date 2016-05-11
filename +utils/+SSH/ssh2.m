@@ -76,9 +76,9 @@ elseif (input_check == 2) %allow ssh2 to be interface to ssh_simpleCommand
         enableprint = arg4;
     end
     if nargout == 0
-        ssh2_simple_command(hostname, username, password, command, enableprint);
+        utils.SSH.ssh2_simple_command(hostname, username, password, command, enableprint);
     else
-        ssh2_struct = ssh2_simple_command(hostname, username, password, command, enableprint);
+        ssh2_struct = utils.SSH.ssh2_simple_command(hostname, username, password, command, enableprint);
     end
 else
     ssh2_struct = utils.SSH.ssh2_main(ssh2_struct);    

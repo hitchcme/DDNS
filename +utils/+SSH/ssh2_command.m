@@ -28,7 +28,7 @@ end
 ssh2_struct.command = command;
 
 %% SSH TO HOST
-ssh2_struct = ssh2(ssh2_struct);
+ssh2_struct = utils.SSH.ssh2(ssh2_struct);
 
 %% OUTPUT RESPONSE FROM HOST
 if (nargout < 2 || enableprint)

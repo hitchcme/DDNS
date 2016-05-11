@@ -16,7 +16,7 @@ function ssh2_struct = sftp(ssh2_struct)
 
 if nargin == 1
     ssh2_struct.sftp = 1;
-    ssh2_struct = ssh2(ssh2_struct);
+    ssh2_struct = utils.SSH.ssh2(ssh2_struct);
 else
     ssh2_struct = [];
     help sftp

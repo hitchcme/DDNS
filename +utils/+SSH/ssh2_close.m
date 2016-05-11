@@ -15,7 +15,7 @@ function ssh2_struct = ssh2_close(ssh2_struct)
 
 if nargin == 1
     ssh2_struct.close_connection = 1;%;
-    ssh2_struct = ssh2(ssh2_struct); %close the connection
+    ssh2_struct = utils.SSH.ssh2(ssh2_struct); %close the connection
 else
     ssh2_struct = [];
     help ssh2_close

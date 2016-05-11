@@ -22,12 +22,12 @@ function ssh2_struct = ssh2_config(hostname, username, password, port)
 
 ssh2_struct = utils.SSH.ssh2_setup(); %default config
 if (nargin >= 3)
-    ssh2_struct.hostname = hostname;
-    ssh2_struct.username = username;
-    ssh2_struct.password = password;
+    ssh2_struct.hostname = hostname
+    ssh2_struct.username = username
+    ssh2_struct.password = password
     if nargin >= 4
-        ssh2_struct.port = port;
-    end
+        ssh2_struct.port = port
+	end
 else
     help ssh2_config
 end

@@ -43,8 +43,8 @@ else
     end
     
 
-    ssh2_struct = ssh2_config(hostname, username, password);
+    ssh2_struct = utils.SSH.ssh2_config(hostname, username, password);
     ssh2_struct.close_connection = 1; %close connection use
-    ssh2_struct = sftp_get(ssh2_struct, remoteFilename, localPath, remotePath);
+    ssh2_struct = utils.SSH.sftp_get(ssh2_struct, remoteFilename, localPath, remotePath);
 end
 

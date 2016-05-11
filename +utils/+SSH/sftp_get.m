@@ -52,6 +52,6 @@ else
     %ssh2_struct.local_file = localFilename; unused in SFTP, filename will
     %be taken from remoteFilename
 
-    ssh2_struct = sftp(ssh2_struct);
+    ssh2_struct = utils.SSH.sftp(ssh2_struct);
 end
 

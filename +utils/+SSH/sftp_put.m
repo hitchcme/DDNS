@@ -55,5 +55,5 @@ else
     ssh2_struct.local_target_direcory = localPath;
     ssh2_struct.remote_target_direcory = remotePath;
 
-    ssh2_struct = sftp(ssh2_struct);
+    ssh2_struct = utils.SSH.sftp(ssh2_struct);
 end

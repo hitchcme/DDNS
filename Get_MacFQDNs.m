@@ -1,8 +1,7 @@
 function [TABLE,NETSET,DHCPSRVS] = Get_MacFQDNs(USERNAME,PASSWORD)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-!ping -t BBB1.wtecs.net
-HOSTNAME='BBB1.wtecs.net';
+HOSTNAME='BBB2.wtecs.net';
 
 FQDNRPATH='/root/.ddnswa/MACFQDNs';
 FQDNPATH='./.tmp/MACFQDNs'
@@ -18,10 +17,14 @@ LDPATH='./.tmp/';
 if ~exist('./.tmp','dir')
 	mkdir('./.tmp');
 end
-ssh2_conn = utils.SSH.scp_simple_get(HOSTNAME,USERNAME,PASSWORD,FQDNRPATH,LDPATH);
 
+
+
+get_ganymed();
+ssh2_conn = utils.SSH.scp_simple_get(HOSTNAME,USERNAME,PASSWORD,FQDNRPATH,LDPATH);
 ssh2_conn = utils.SSH.scp_simple_get(HOSTNAME,USERNAME,PASSWORD,'/root/.ddnswa/domain','./.tmp/');
 ssh2_conn = utils.SSH.scp_simple_get(HOSTNAME,USERNAME,PASSWORD,'/root/.ddnswa/SRVs','./.tmp/');
+rem_ganymed();
 
 fid=fopen(FQDNPATH);
 tline = fgetl(fid);
@@ -73,5 +76,28 @@ while ischar(tline)
 	tline = fgetl(fid);
 end
 
-end
 
+
+function get_ganymed()
+	if ispc
+		DIRDELIM = '\';
+	else
+		DIRDELIM = '/';
+	end
+	THISFILE = strcat(mfilename,'.m');
+	THISDIR = regexprep(strcat(mfilename('fullpath'),'.m'),THISFILE,'');
+	GMPTH = strcat(THISDIR,DIRDELIM,'+utils',DIRDELIM,'+SSH',DIRDELIM,'ganymed-ssh2-build250.zip');
+	GMPTH1 = strcat(THISDIR,DIRDELIM,'ganymed-ssh2-build250.zip');
+	copyfile(GMPTH,GMPTH1);
+	
+function rem_ganymed()
+	if ispc
+		DIRDELIM = '\';
+	else
+		DIRDELIM = '/';
+	end
+	THISFILE = strcat(mfilename,'.m');
+	THISDIR = regexprep(strcat(mfilename('fullpath'),'.m'),THISFILE,'');
+	GMPTH1 = strcat(THISDIR,DIRDELIM,'ganymed-ssh2-build250.zip');
+	delete(GMPTH1);
+	

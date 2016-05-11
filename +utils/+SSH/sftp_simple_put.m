@@ -45,7 +45,7 @@ else
         remoteFilename = [];
     end
     
-    ssh2_struct = ssh2_config(hostname, username, password);
+    ssh2_struct = utils.SSH.ssh2_config(hostname, username, password);
     ssh2_struct.close_connection = 1; %close connection use
-    ssh2_struct = sftp_put(ssh2_struct, localFilename, remotePath, localPath, remoteFilename);
+    ssh2_struct = utils.SSH.sftp_put(ssh2_struct, localFilename, remotePath, localPath, remoteFilename);
 end

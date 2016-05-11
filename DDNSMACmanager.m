@@ -183,10 +183,11 @@ HOSTNAME = 'BBB1.local';
 USERNAME = handles.USERNAME;
 PASSWORD = handles.PASSWORD;
 
-
+get_ganymed()
 ssh2_conn = utils.SSH.scp_simple_put(HOSTNAME,USERNAME,PASSWORD,'./.tmp/MACFQDNs','/root/.ddnswa/');
 ssh2_conn = utils.SSH.scp_simple_put(HOSTNAME,USERNAME,PASSWORD,'./.tmp/SRVs','/root/.ddnswa/');
 ssh2_conn = utils.SSH.scp_simple_put(HOSTNAME,USERNAME,PASSWORD,'./.tmp/domain','/root/.ddnswa/');
+rem_ganymed()
 TABLE = Get_MacFQDNs(USERNAME,PASSWORD);
 
 TABLE.MAC = upper(TABLE.MAC);
@@ -227,3 +228,28 @@ function ImportRecord_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of ImportRecord
+
+
+function get_ganymed()
+	if ispc
+		DIRDELIM = '\';
+	else
+		DIRDELIM = '/';
+	end
+	THISFILE = strcat(mfilename,'.m');
+	THISDIR = regexprep(strcat(mfilename('fullpath'),'.m'),THISFILE,'');
+	GMPTH = strcat(THISDIR,DIRDELIM,'+utils',DIRDELIM,'+SSH',DIRDELIM,'ganymed-ssh2-build250.zip');
+	GMPTH1 = strcat(THISDIR,DIRDELIM,'ganymed-ssh2-build250.zip');
+	copyfile(GMPTH,GMPTH1);
+	
+function rem_ganymed()
+	if ispc
+		DIRDELIM = '\';
+	else
+		DIRDELIM = '/';
+	end
+	THISFILE = strcat(mfilename,'.m');
+	THISDIR = regexprep(strcat(mfilename('fullpath'),'.m'),THISFILE,'');
+	GMPTH1 = strcat(THISDIR,DIRDELIM,'ganymed-ssh2-build250.zip');
+	delete(GMPTH1);
+	

@@ -41,7 +41,7 @@ else
         localPath = pwd();   
     end    
 
-    ssh2_struct = utils.SSH.ssh2_config(hostname, username, password);
+    ssh2_struct = ssh2_config(hostname, username, password);
 
     if nargin >= 7
         ssh2_struct.remote_file_new_name = remoteFilename;
